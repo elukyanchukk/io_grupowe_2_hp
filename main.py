@@ -1,3 +1,19 @@
+import time
+import random
+
+def wyslij_sowe (adresat, tresc):
+
+    print(f"Wysyłanie sowy do: {adresat}, o treści: {tresc}")
+    time.sleep(1)
+
+    if random.random()<0.85:
+        print("Sowa została wysłana pomyślnie!")
+        return True
+    else:
+        print("Niestety wystąpił błąd podczas wysyłania sowy")
+        return False
+
+
 def wybierz_sowe_zwroc_koszt(potw_odbioru, odleglosc, typ, specjalna):
 
     koszt_dict = {'galeon': 0, 'sykl': 0, 'knut': 0}
