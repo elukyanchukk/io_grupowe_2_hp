@@ -1,9 +1,34 @@
-fundusz = {
-    "galeon" : 0,
-    "sykl" : 0,
-    "knut" : 13
-}
+def wybierz_sowe_zwroc_koszt(potw_odbioru, odleglosc, typ, specjalna):
 
+    koszt_dict = {'galeon': 0, 'sykl': 0, 'knut': 0}
+
+    if typ == 'list':
+        if odleglosc == 'lokalna':
+            koszt_dict['knut'] = 2
+        elif odleglosc == 'krajowa':
+            koszt_dict['knut'] = 12
+        elif odleglosc == 'dalekobieżna':
+            koszt_dict['knut'] = 20
+
+    elif typ == 'paczka':
+        if odleglosc == 'lokalna':
+            koszt_dict['knut'] = 7
+        elif odleglosc == 'krajowa':
+            koszt_dict['knut'] = 2
+            koszt_dict['sykl'] = 1
+        elif odleglosc == 'dalekobieżna':
+            koszt_dict['knut'] = 1
+            koszt_dict['sykl'] = 2
+
+    if potw_odbioru:
+        koszt_dict['knut'] = koszt_dict.get('knut') + 7
+
+    if specjalna == 'wyjec':
+        koszt_dict['knut'] = koszt_dict.get('knut') + 4
+    elif specjalna == 'list gończy':
+        koszt_dict['sykl'] = koszt_dict.get('sykl') + 1
+
+    return koszt_dict
 
 
 def waluta_dict_na_str(fundusz):
@@ -19,9 +44,7 @@ def waluta_dict_na_str(fundusz):
     if fundusz['knut'] != 0:
         cena += str(fundusz['knut']) + ' knut'
 
-    return print(cena.strip())
+    return cena
 
-
-waluta_dict_na_str(fundusz)
 
 
