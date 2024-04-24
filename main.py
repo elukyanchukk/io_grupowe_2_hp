@@ -1,3 +1,19 @@
+import time
+import random
+
+def wyslij_sowe (adresat, tresc):
+
+    print(f"Wysyłanie sowy do: {adresat}, o treści: {tresc}")
+    time.sleep(1)
+
+    if random.random()<0.85:
+        print("Sowa została wysłana pomyślnie!")
+        return True
+    else:
+        print("Niestety wystąpił błąd podczas wysyłania sowy")
+        return False
+
+
 def wybierz_sowe_zwroc_koszt(potw_odbioru, odleglosc, typ, specjalna):
 
     koszt_dict = {'galeon': 0, 'sykl': 0, 'knut': 0}
@@ -47,4 +63,25 @@ def waluta_dict_na_str(fundusz):
     return cena
 
 
+
+def waluta_str_na_dict(waluta_str):
+    
+    elements = waluta_str.split()
+    
+   
+    currency_dict = {'galeony': 0, 'sykle': 0, 'knuty': 0}
+    
+    
+    for i in range(0, len(elements), 2):
+        value = int(elements[i])  
+        unit = elements[i + 1]    
+        
+        if unit.startswith('g'):
+            currency_dict['galeony'] = value
+        elif unit.startswith('s'):
+            currency_dict['sykle'] = value
+        elif unit.startswith('k'):
+            currency_dict['knuty'] = value
+    
+    return currency_dict
 
