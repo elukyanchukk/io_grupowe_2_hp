@@ -1,5 +1,5 @@
 <span style="color:red" h2>***Gryffindor***<span >
-![Javatpoint](My Computer/imgs/fryffindor.jfif)
+![Javatpoint](‪\\vdi-fs01.ue.poznan\Profiles$\93563\Pictures\gryf.jfif)
 
 
 **lista uczestników:**
