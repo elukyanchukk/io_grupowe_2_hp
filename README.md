@@ -1,5 +1,6 @@
 <span style="color:red" h2>***Gryffindor***<span >
-![Javatpoint](https://github.com/elukyanchukk/io_grupowe_2_hp.wiki.git)
+
+![Gryfindor logo](/gryffindor.jpg)
 
 **lista uczestników:**
 <h4>Elena https://github.com/elukyanchukk</h4>
