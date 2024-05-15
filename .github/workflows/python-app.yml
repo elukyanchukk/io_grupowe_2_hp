@@ -28,4 +28,4 @@ jobs:
     - name: test_Filip
       run: python tests_Filip.py
     - name: test_Oliwia
-      run: python tests_Oliwia.py
+      run: python tests_oliwia.py
