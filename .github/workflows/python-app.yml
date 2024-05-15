@@ -25,3 +25,5 @@ jobs:
         python-version: "3.10"
     - name: Hello with lider
       run: python hello-filip.py
+    - name: test_Filip
+      run: python tests_Filip.py
