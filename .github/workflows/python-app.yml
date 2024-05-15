@@ -27,3 +27,5 @@ jobs:
       run: python hello-filip.py
     - name: test_Filip
       run: python tests_Filip.py
+    - name: test_Oliwia
+      run: python tests_Oliwia.py
