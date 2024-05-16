@@ -44,7 +44,7 @@ def wybierz_sowe_zwroc_koszt(potw_odbioru, odleglosc, typ, specjalna):
             koszt_dict['knut'] = 2
         elif odleglosc == 'krajowa':
             koszt_dict['knut'] = 12
-        elif odleglosc == 'dalekobieżna':
+        elif odleglosc == 'dalekobiezna':
             koszt_dict['knut'] = 20
 
     elif typ == 'paczka':
@@ -53,7 +53,7 @@ def wybierz_sowe_zwroc_koszt(potw_odbioru, odleglosc, typ, specjalna):
         elif odleglosc == 'krajowa':
             koszt_dict['knut'] = 2
             koszt_dict['sykl'] = 1
-        elif odleglosc == 'dalekobieżna':
+        elif odleglosc == 'dalekobiezna':
             koszt_dict['knut'] = 1
             koszt_dict['sykl'] = 2
 
@@ -62,7 +62,7 @@ def wybierz_sowe_zwroc_koszt(potw_odbioru, odleglosc, typ, specjalna):
 
     if specjalna == 'wyjec':
         koszt_dict['knut'] = koszt_dict.get('knut') + 4
-    elif specjalna == 'list gończy':
+    elif specjalna == 'list gonczy':
         koszt_dict['sykl'] = koszt_dict.get('sykl') + 1
 
     return koszt_dict
