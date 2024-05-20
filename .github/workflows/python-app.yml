@@ -29,3 +29,5 @@ jobs:
       run: python tests_Filip.py
     - name: test_Oliwia
       run: python tests_oliwia.py
+    - name: test_Weronika
+      run: python tests_Weronika.py
