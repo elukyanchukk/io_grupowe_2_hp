@@ -4,15 +4,20 @@ def testuj_wysylanie_sowy():
 
     true_count = 0
     false_count = 0
-    for _ in range(200):
+    error_margin = 0.05
+    num_tests = 100
+
+    for _ in range(num_tests):
         if wyslij_sowe("Adresat", "Treść"):
             true_count += 1
         else:
             false_count += 1
 
-    return true_count, false_count
+    success_rate = true_count / num_tests
 
-    true_count, false_count = testuj_wysylanie_sowy()
+    if (0.85 - error_margin) <= success_rate <= (0.85 + error_margin):
+        return "Funkcja działa poprawnie"
+    else:
+        return "Funkcja niepoprawna"
 
-    print("Liczba poprawnie wysłanych sów:", true_count)
-    print("Liczba błędnie wysłanych sów:", false_count)
+assert(testuj_wysylanie_sowy() == "Funkcja działa poprawnie")
