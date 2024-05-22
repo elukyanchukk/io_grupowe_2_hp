@@ -15,6 +15,8 @@ def testuj_wysylanie_sowy():
 
     success_rate = true_count / num_tests
 
+    print(f'success_rate: {success_rate}')
+
     if (0.85 - error_margin) <= success_rate <= (0.85 + error_margin):
         return "Funkcja działa poprawnie"
     else:
