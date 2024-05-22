@@ -23,6 +23,8 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
+    - name: Wyświetl pliki w repozytorium
+      run: ls -R
     - name: Hello with lider
       run: python hello-filip.py
     - name: test_Filip
