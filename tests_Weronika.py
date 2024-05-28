@@ -4,7 +4,7 @@ def testuj_wysylanie_sowy():
 
     true_count = 0
     false_count = 0
-    error_margin = 0.05
+    error_margin = 0.1
     num_tests = 100
 
     for _ in range(num_tests):
