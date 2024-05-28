@@ -12,6 +12,27 @@ def wyslij_sowe (adresat, tresc):
     else:
         print("Niestety wystąpił błąd podczas wysyłania sowy")
         return False
+    
+
+def licz_sume(fundusz):
+    # Przeliczenie knutów na sykle
+    knuty = sum(fundusz.get("knut"))
+    knut_sykl = knuty // 21
+    knuty = knuty % 21
+
+    # Dodanie knutów do sykli i przeliczenie sykli na galeony 
+    sykle = sum(fundusz.get("sykl")) + knut_sykl
+    sykl_galeon = sykle // 17
+    sykle = sykle % 17
+
+    # Dodanie sykli do galeonów
+    galeony = sum(fundusz.get("galeon")) + sykl_galeon
+
+    return {
+        "galeon": galeony,
+        "sykl": sykle,
+        "knut": knuty
+    }
 
 
 def wybierz_sowe_zwroc_koszt(potw_odbioru, odleglosc, typ, specjalna):
@@ -61,6 +82,31 @@ def waluta_dict_na_str(fundusz):
         cena += str(fundusz['knut']) + ' knut'
 
     return cena
+
+
+def waluta_str_na_dict(waluta_str):
+    
+    elements = waluta_str.split()
+    
+   
+    currency_dict = {'galeony': 0, 'sykle': 0, 'knuty': 0}
+    
+    
+    for i in range(0, len(elements), 2):
+        value = int(elements[i])  
+        unit = elements[i + 1]    
+        
+        if unit.startswith('g'):
+            currency_dict['galeony'] = value
+        elif unit.startswith('s'):
+            currency_dict['sykle'] = value
+        elif unit.startswith('k'):
+            currency_dict['knuty'] = value
+    
+    return currency_dict
+
+
+
 
 
 
