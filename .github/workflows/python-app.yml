@@ -27,6 +27,8 @@ jobs:
       run: ls -R
     - name: Hello with lider
       run: python hello-filip.py
+    - name: test_Magdalena
+      run: python testy_magda.py
     - name: test_Filip
       run: python tests_Filip.py
     - name: test_Oliwia
