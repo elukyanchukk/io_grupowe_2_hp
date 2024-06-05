@@ -1,5 +1,8 @@
 import time
 import random
+import csv
+from datetime import datetime
+import os
 
 def wyslij_sowe (adresat, tresc):
 
@@ -106,7 +109,52 @@ def waluta_str_na_dict(waluta_str):
     return currency_dict
 
 
+def nadaj_sowe(adresat, tresc, potw_odbioru, odleglosc, typ, specjalna):
+    koszt_dict = wybierz_sowe_zwroc_koszt(potw_odbioru, odleglosc, typ, specjalna)
+    koszt_str = waluta_dict_na_str(koszt_dict)
+    potwierdzenie_str = "TAK" if potw_odbioru else "NIE"
+    dane = {
+        'adresat': adresat,
+        'treść wiadomości': tresc,
+        'koszt przesyłki': koszt_str,
+        'potwierdzenie odbioru': potwierdzenie_str
+    }
+    sciezka_do_pliku = 'poczta_nadania_lista.csv'
+    plik_istnieje = os.path.isfile(sciezka_do_pliku)
+    with open(sciezka_do_pliku, mode='a', newline='', encoding='utf-8') as plik:
+        fieldnames = ['adresat', 'treść wiadomości', 'koszt przesyłki', 'potwierdzenie odbioru']
+        writer = csv.DictWriter(plik, fieldnames=fieldnames)
+
+        if not plik_istnieje:
+            writer.writeheader()
+
+        writer.writerow(dane)
 
 
-
-
+def poczta_wyslij_sowy(sciezka_do_pliku):
+    data = datetime.now().strftime("%d_%m_%Y")
+    nazwa_pliku_wyjsciowego = f"output_sowy_z_poczty_{data}.csv"
+    
+    with open(sciezka_do_pliku, mode='r', newline='', encoding='utf-8') as plik_csv:
+        with open(nazwa_pliku_wyjsciowego, mode='w', newline='', encoding='utf-8') as plik_wyjsciowy:
+            writer = csv.writer(plik_wyjsciowy)
+            writer.writerow(['adresat', 'treść wiadomosci', 'koszt przesyłki', 'potwierdzenie odbioru', 'rzeczywisty koszt'])
+            
+            reader = csv.DictReader(plik_csv)
+            for row in reader:
+                adresat = row['adresat']
+                tresc = row['treść wiadomości']
+                koszt_przesylki = (row['koszt przesyłki'])
+                
+                potwierdzenie_odbioru = row['potwierdzenie odbioru']
+                
+                sowa_doleciala = wyslij_sowe(adresat, tresc)
+                if sowa_doleciala:
+                    rzeczywisty_koszt = koszt_przesylki
+                else:
+                    if potwierdzenie_odbioru == 'TAK':
+                        rzeczywisty_koszt = 0 
+                    else:
+                        rzeczywisty_koszt = koszt_przesylki 
+                
+                writer.writerow([adresat, tresc, koszt_przesylki, potwierdzenie_odbioru, rzeczywisty_koszt])
